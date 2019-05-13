@@ -7,8 +7,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.pmw.tinylog.LogEntry;
 import org.pmw.tinylog.Logger;
+import org.pmw.tinylog.writers.ConsoleWriter;
+
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 /**
@@ -95,7 +101,7 @@ public class RMController {
      */
     @FXML
     private void viewPersonClick(ActionEvent event){
-       Logger.info("Opening View Person Window!");
+        Logger.info("Opening View Person Window!");
         try {
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
