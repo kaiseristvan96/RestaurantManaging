@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ViewPersonController">
+    <children>
+        <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClick" prefHeight="40.0" prefWidth="99.0" text="Back" />
+        <TableView fx:id="viewPersonTable" layoutX="13.0" layoutY="47.0" prefHeight="346.0" prefWidth="870.0">
+            <columns>
+                <TableColumn fx:id="viewPersonName" prefWidth="157.0" text="Name" />
+                <TableColumn fx:id="viewPersonDate" prefWidth="141.0" text="Check-in Time" />
+                <TableColumn fx:id="viewPersonMeals" prefWidth="317.0" text="List Of Meals" />
+                <TableColumn fx:id="viewPersonCostHUF" prefWidth="125.0" text="Total Cost(HUF)" />
+                <TableColumn fx:id="viewPersonCostEUR" prefWidth="129.0" text="Total Cost(EUR)" />
+            </columns>
+        </TableView>
+    </children>
+</Pane>
