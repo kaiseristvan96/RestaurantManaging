@@ -13,8 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.pmw.tinylog.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -37,10 +36,6 @@ import java.util.*;
  * This class adds a person with selected meals and check-in time to the database.
  */
 public class AddPersonController implements Initializable {
-    /**
-     * Initializing the Logger for this class.
-     */
-    private static final Logger logger = LogManager.getLogger(AddPersonController.class);
 
     /**
      * TextField where tha name of the person is specified.
@@ -115,7 +110,7 @@ public class AddPersonController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb){
         addPersonRefreshed();
-        logger.info("Initializing database");
+        Logger.info("Initializing database");
     }
 
     /**
@@ -124,7 +119,7 @@ public class AddPersonController implements Initializable {
      */
     @FXML
     private void backButtonClick(ActionEvent event){
-        logger.info("Going back to the main window");
+       Logger.info("Going back to the main window");
 
         try {
             Node source = (Node) event.getSource();
@@ -137,7 +132,7 @@ public class AddPersonController implements Initializable {
             stage.show();
 
         } catch (IOException e) {
-            logger.error("IOException", new IOException(e));
+          Logger.error("IOException", new IOException(e));
         }
         allMeals2.clear();
 
@@ -149,7 +144,7 @@ public class AddPersonController implements Initializable {
      */
     @FXML
     private void writeToDatabase(){
-        logger.info("Writing to database");
+       Logger.info("Writing to database");
         double sumCost = 0.0;
         String allFoods = "";
         for(int i = 0; i < items2.size();i++){
@@ -175,7 +170,7 @@ public class AddPersonController implements Initializable {
      * @param selectedMeals String, the concatenated string of selected meals.
      */
     private static void addPerson(String name, String localDateTime, int cost, String selectedMeals){
-        logger.info("Adding a new person to the database");
+       Logger.info("Adding a new person to the database");
         Person person = new Person(name, localDateTime,cost, selectedMeals);
 
         em.getTransaction().begin();
@@ -189,7 +184,7 @@ public class AddPersonController implements Initializable {
      */
     @FXML
     private void saveAll(ActionEvent event){
-        logger.info("Saving data");
+      Logger.info("Saving data");
         writeToDatabase();
         allMeals2.clear();
         items2.clear();
@@ -203,7 +198,7 @@ public class AddPersonController implements Initializable {
      */
     @FXML
     private void addPersonRefreshed(){
-        logger.info("Refreshing tables");
+      Logger.info("Refreshing tables");
 
         try {
 
@@ -243,11 +238,11 @@ public class AddPersonController implements Initializable {
 
 
         } catch (ParserConfigurationException e) {
-            logger.error("ParserConfigurationException", new ParserConfigurationException());
+           Logger.error("ParserConfigurationException", new ParserConfigurationException());
         } catch (SAXException e) {
-            logger.error("SAXException", new SAXException(e));
+          Logger.error("SAXException", new SAXException(e));
         } catch (IOException e) {
-            logger.error("IOException", new IOException(e));
+          Logger.error("IOException", new IOException(e));
         }
     }
 

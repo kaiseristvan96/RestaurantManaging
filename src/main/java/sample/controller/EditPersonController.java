@@ -12,8 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.pmw.tinylog.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -38,10 +38,6 @@ import java.util.ResourceBundle;
  * Class that let's the user edit a person's bought meals.
  */
 public class EditPersonController implements Initializable {
-    /**
-     * Initiate the Logger for the class.
-     */
-    private static final Logger logger = LogManager.getLogger(EditPersonController.class);
 
     /**
      * Used by the JPA.
@@ -107,7 +103,7 @@ public class EditPersonController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        logger.info("Initializing tables");
+       Logger.info("Initializing tables");
         try {
 
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -138,11 +134,11 @@ public class EditPersonController implements Initializable {
 
 
         } catch (ParserConfigurationException e) {
-            logger.error("ParserConfigurationException", new ParserConfigurationException());
+       Logger.error("ParserConfigurationException", new ParserConfigurationException());
         } catch (SAXException e) {
-            logger.error("SAXException", new SAXException(e));
+      Logger.error("SAXException", new SAXException(e));
         } catch (IOException e) {
-            logger.error("IOException", new IOException(e));
+       Logger.error("IOException", new IOException(e));
         }
     }
 
@@ -152,7 +148,7 @@ public class EditPersonController implements Initializable {
      */
     @FXML
     private void backButtonClick(ActionEvent event){
-        logger.info("Returning to main window!");
+          Logger.info("Returning to main window!");
         try {
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
@@ -164,7 +160,7 @@ public class EditPersonController implements Initializable {
             stage.show();
 
         } catch (IOException e) {
-            logger.error("IOException", new IOException(e));
+            Logger.error("IOException", new IOException(e));
         }
     }
 
@@ -181,13 +177,13 @@ public class EditPersonController implements Initializable {
      * Get the specified person's data from database and fill the table view.
      */
     private void searchInDatabase(){
-        logger.info("Searching...");
+        Logger.info("Searching...");
         emf = Persistence.createEntityManagerFactory("jpa-persistence-unit-1");
         em = emf.createEntityManager();
         search = em.createQuery(
                 "SELECT s FROM Person s WHERE s.name ='"+editPersonSearchField.getText()+"'",Person.class);
         results = search.getResultList();
-        logger.info("Result(s) of search, picking the first item: " + results);
+        Logger.info("Result(s) of search, picking the first item: " + results);
         ObservableList<String> allMealsCurrently = FXCollections.observableArrayList();
         String[] splitMeals = (results.get(0)).getSelectedMeals().split(";");
         for(int i = 0; i < splitMeals.length/*results.size()*/;i++) {
@@ -203,7 +199,7 @@ public class EditPersonController implements Initializable {
      */
     @FXML
     private void addSelectedMeal(ActionEvent event){
-        logger.info("Filling tables!");
+        Logger.info("Filling tables!");
         Meal additionalMealsToAdd;
         additionalMealsToAdd = editPersonTable.getSelectionModel().getSelectedItem();
         em.getTransaction().begin();
@@ -222,10 +218,10 @@ public class EditPersonController implements Initializable {
      */
     @FXML
     private void editPersonRemove(){
-        logger.info("Removing data");
+        Logger.info("Removing data");
         String mealToRemove;
         mealToRemove = editPersonTable1.getSelectionModel().getSelectedItem();
-        logger.info("Removing" + mealToRemove);
+        Logger.info("Removing " + mealToRemove);
         em.getTransaction().begin();
         search = em.createQuery(
                 "SELECT s FROM Person s WHERE s.name ='"+editPersonSearchField.getText()+"'",Person.class);

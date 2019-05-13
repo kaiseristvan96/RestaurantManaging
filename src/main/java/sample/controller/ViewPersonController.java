@@ -24,18 +24,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.pmw.tinylog.Logger;
 
 
 /**
  * This class let's the user see all the database items in one window.
  */
 public class ViewPersonController implements Initializable {
-    /**
-     * Initializing the Logger for the ViewPersonController class.
-     */
-    private static final Logger logger = LogManager.getLogger(ViewPersonController.class);
 
     /**
      * This method loads the main window scene.
@@ -43,7 +39,7 @@ public class ViewPersonController implements Initializable {
      */
     @FXML
     private void backButtonClick(ActionEvent event){
-        logger.info("Opening the main Window!");
+        Logger.info("Opening the main Window!");
         try {
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
@@ -55,7 +51,7 @@ public class ViewPersonController implements Initializable {
             stage.show();
 
         } catch (IOException e) {
-            logger.error("IOException", new IOException(e));
+            Logger.error("IOException", new IOException(e));
         }
 
     }
@@ -132,7 +128,7 @@ public class ViewPersonController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        logger.info("Initialization!");
+        Logger.info("Initialization!");
         emf = Persistence.createEntityManagerFactory("jpa-persistence-unit-1");
         em = emf.createEntityManager();
         TypedQuery<Person> search = em.createQuery("SELECT s FROM Person s", Person.class);

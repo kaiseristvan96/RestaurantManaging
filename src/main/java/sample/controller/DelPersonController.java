@@ -13,8 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.pmw.tinylog.Logger;
 import sample.model.Person;
 
 
@@ -28,10 +27,6 @@ import java.util.ResourceBundle;
  * This class lets the user delete a person from the database.
  */
 public class DelPersonController implements Initializable {
-    /**
-     * Initializes the Logger for the DelPersonController class.
-     */
-    private static final Logger logger = LogManager.getLogger(DelPersonController.class);
 
     /**
      * Main part of the TableView.
@@ -80,7 +75,7 @@ public class DelPersonController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        logger.info("Initializing data");
+        Logger.info("Initializing data");
         loadTable();
 
     }
@@ -129,7 +124,7 @@ public class DelPersonController implements Initializable {
      */
     @FXML
     private void backButtonClick(ActionEvent event){
-        logger.info("Returning to main window!");
+        Logger.info("Returning to main window!");
         try {
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
@@ -141,7 +136,7 @@ public class DelPersonController implements Initializable {
             stage.show();
 
         } catch (IOException e) {
-            logger.error("IOException", new IOException(e));
+          Logger.error("IOException", new IOException(e));
         }
 
     }
@@ -152,7 +147,7 @@ public class DelPersonController implements Initializable {
      */
     @FXML
     private void deleteSelectedPersonButton(ActionEvent event){
-        logger.info("Deleting selected item from database!");
+       Logger.info("Deleting selected item from database!");
         emf = Persistence.createEntityManagerFactory("jpa-persistence-unit-1");
         em = emf.createEntityManager();
 
