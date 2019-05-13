@@ -31,6 +31,7 @@ public class RMController {
 
             stage.setTitle("Add Person");
             stage.setScene(new Scene(root));
+            stage.setResizable(true);
             stage.show();
 
 
@@ -55,6 +56,7 @@ public class RMController {
 
             stage.setTitle("Edit Person");
             stage.setScene(new Scene(root));
+            stage.setResizable(true);
             stage.show();
 
         } catch (IOException e) {
@@ -78,6 +80,7 @@ public class RMController {
 
             stage.setTitle("Delete Person");
             stage.setScene(new Scene(root));
+            stage.setResizable(true);
             stage.show();
 
         } catch (IOException e) {
@@ -101,6 +104,7 @@ public class RMController {
 
             stage.setTitle("View Person List");
             stage.setScene(new Scene(root));
+            stage.setResizable(true);
             stage.show();
 
         } catch (IOException e) {
