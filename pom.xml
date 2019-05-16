@@ -26,6 +26,12 @@
         </developer>
     </developers>
 
+    <scm>
+        <url>https://github.com/kaiseristvan96/RestaurantManaging</url>
+        <connection>scm:git:git:https://github.com/kaiseristvan96/RestaurantManaging.git</connection>
+        <developerConnection>scm:git:git@github.com:kaiseristvan96/RestaurantManaging.git</developerConnection>
+    </scm>
+
     <description>
         This program helps the job of the headwaiters of restaurants by making it easier to
         manage the reservations. They have the option to add new customers to the database,
